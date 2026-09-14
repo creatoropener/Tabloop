@@ -7,8 +7,8 @@ A lightweight privacy-first static website for Tabloop.
 - `index.html` — main company website
 - `styles.css` — complete responsive styling
 - `script.js` — mobile navigation + reveal animations + current year
-- `privacy.html` — privacy policy placeholder
-- `terms.html` — terms placeholder
+- `privacy.html` — production privacy policy for the Tabloop company website
+- `terms.html` — production website terms of use
 - `thank-you.html` — branded confirmation page the contact form redirects to on submit
 - `assets/favicon.svg` — Tabloop mark / favicon
 - `assets/og-image.png` — 1200x630 social share image (Open Graph / Twitter card)
@@ -20,7 +20,7 @@ A lightweight privacy-first static website for Tabloop.
 2. Drag this folder into Netlify Drop, or connect it to a Git repository.
 3. The included contact form uses Netlify Forms and will work after a production deploy; on submit it redirects to `thank-you.html`.
 4. Point your custom Tabloop domain to Netlify when ready.
-5. Once the domain is live, double-check the `og:image` / `twitter:image` URLs in `index.html` match the real domain (currently set to `https://tabloop.com/assets/og-image.png`).
+5. Current SEO URLs use `https://tabloop.netlify.app/`. Replace them with the final custom domain when connected.
 
 ## Before launch
 
@@ -43,3 +43,11 @@ To build simple, reliable, privacy-first digital products that solve real everyd
 
 Core promise:
 Solve the problem. Keep it simple. Respect the user's data.
+
+
+## SEO baseline
+
+- Canonical URL currently uses `https://tabloop.netlify.app/`.
+- Update canonical, Open Graph URLs, structured data, robots.txt and sitemap.xml when a custom domain is connected.
+- Homepage includes Organization, WebSite and WebPage JSON-LD.
+- Legal pages are indexable; thank-you page is noindex.
