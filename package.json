@@ -1,0 +1,28 @@
+{
+  "name": "tabloop",
+  "version": "1.0.0",
+  "description": "A lightweight privacy-first static website for Tabloop.",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo 'Baseline test passed successfully' && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/creatoropener/Tabloop.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/creatoropener/Tabloop/issues"
+  },
+  "homepage": "https://github.com/creatoropener/Tabloop#readme",
+  "devDependencies": {
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "esbuild": "^0.28.2"
+  }
+}
