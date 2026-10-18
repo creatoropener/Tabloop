@@ -1,53 +1,28 @@
-# Tabloop Website
+# Tabloop PatchProof preparation bundle
 
-A lightweight privacy-first static website for Tabloop.
+This bundle prepares the repository for a first **experimental static-web** PatchProof attempt on Tabloop issue #2. It does not fix the target bug in `index.html`.
 
-## Files
+## Files to copy to the root of `creatoropener/Tabloop`
 
-- `index.html` — main company website
-- `styles.css` — complete responsive styling
-- `script.js` — mobile navigation + reveal animations + current year
-- `privacy.html` — production privacy policy for the Tabloop company website
-- `terms.html` — production website terms of use
-- `thank-you.html` — branded confirmation page the contact form redirects to on submit
-- `assets/favicon.svg` — Tabloop mark / favicon
-- `assets/og-image.png` — 1200x630 social share image (Open Graph / Twitter card)
-- `netlify.toml` — basic Netlify hosting + security headers
+Copy/replace `package.json`, `patchproof.json`, and `tsconfig.json`; add `patchproof-test-runner.cjs`; add `tests/smoke.test.cjs`.
 
-## Deploy on Netlify
+Changes included:
 
-1. Create a new Netlify site.
-2. Drag this folder into Netlify Drop, or connect it to a Git repository.
-3. The included contact form uses Netlify Forms and will work after a production deploy; on submit it redirects to `thank-you.html`.
-4. Point your custom Tabloop domain to Netlify when ready.
-5. Current SEO URLs use `https://tabloop.netlify.app/`. Replace them with the final custom domain when connected.
+- Corrects the `checkJs` typo (`flase` -> `false`).
+- Selects the `static-web` runtime because the reported issue concerns an HTML form URL, not a TypeScript function.
+- Replaces the placeholder `npm test` script with a real test runner.
+- Adds one smoke test that checks the form and confirmation page exist, but deliberately does **not** assert the form action. That means the intended bug remains available for PatchProof to reproduce.
+- The test runner also explicitly includes PatchProof's generated hidden test filename, when it is placed at the repository root or in `tests/`.
 
-## Before launch
+## Before triggering the issue
 
-- Replace the Xpendbox "Coming soon" state when its public URL is ready.
-- Confirm the final Tabloop legal business/contact details.
-- Review the Privacy Policy and Terms of Use before publishing.
-- Add final analytics only if needed, preferably privacy-respecting.
-- Replace the provisional logo mark if you later finalize a dedicated Tabloop identity.
+1. Keep `index.html`'s current `action="/thank-you.html"` unchanged until PatchProof has had a chance to test it.
+2. From the repository root, run `npm ci` and then `npm test`. The test should pass and report one test.
+3. Commit and push these preparation changes to the default branch.
+4. In GitHub Actions secrets, ensure `CONTREE_IMAGE` points to a compatible Contree image prepared with the **web** or **all** profile, including `jsdom`. The checked-in workflow passes this secret as `sandbox-image`; it does not use a runtime-specific image input.
+5. Open issue #2 (`Root-Absolute Form Action Breaks Subpath / Staging Deploys`) and add the `shadow-fix` label. Do not trigger until the preparation commit is on the default branch.
+6. Review the PatchProof report on the issue and the Actions run. `verified` means the generated regression distinguished the baseline from the repair; `no_reproduction`, `readiness_blocked`, or `verifier_invalid` means the report must be diagnosed before claiming success.
 
-## Brand foundation
+## Limitations
 
-Tagline:
-Useful software. Thoughtfully built.
-
-Vision:
-To make useful software simpler, more accessible, and more private by design.
-
-Mission:
-To build simple, reliable, privacy-first digital products that solve real everyday problems.
-
-Core promise:
-Solve the problem. Keep it simple. Respect the user's data.
-
-
-## SEO baseline
-
-- Canonical URL currently uses `https://tabloop.netlify.app/`.
-- Update canonical, Open Graph URLs, structured data, robots.txt and sitemap.xml when a custom domain is connected.
-- Homepage includes Organization, WebSite and WebPage JSON-LD.
-- Legal pages are indexable; thank-you page is noindex.
+The `static-web` adapter is experimental in the project's run guide; this preparation bundle makes the project testable but cannot guarantee that the model-generated test will reproduce the behavior correctly. The GitHub Action and issue label still need to be triggered in GitHub.

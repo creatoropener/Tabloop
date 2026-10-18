@@ -4,7 +4,7 @@
   "description": "A lightweight privacy-first static website for Tabloop.",
   "main": "script.js",
   "scripts": {
-    "test": "echo 'Baseline test passed successfully' && exit 0"
+    "test": "node patchproof-test-runner.cjs"
   },
   "repository": {
     "type": "git",
