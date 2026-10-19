@@ -4,7 +4,7 @@
   "description": "A lightweight privacy-first static website for Tabloop.",
   "main": "script.js",
   "scripts": {
-    "test": "node --test"
+    "test": "node -e \"const fs=require('fs'); const files=fs.readdirSync('.').filter(f=>f.endsWith('.test.mjs')); if(files.length) require('child_process').fork('node', ['--test', ...files]).on('exit', process.exit);\""
   },
   "repository": {
     "type": "git",
